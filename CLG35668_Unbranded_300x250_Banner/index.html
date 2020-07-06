@@ -6,7 +6,7 @@
     <title></title>
     <meta name="ad.size" content="width=300,height=250">
     <script type="text/javascript">
-        var clickTag = "https://www.google.com";
+        var clickTag = "https://www.google.com/";
     </script>
     <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.0.1_min.js"></script>
 
@@ -143,20 +143,19 @@
             height: 248px;
             border: 1px solid #222;
             pointer-events: none;
-            z-index: 8;
+            z-index: 15;
             top: 0px;
             left: 0px;
         }
 
-        .exit_1 {
+        .exit {
             position: absolute;
             width: 300px;
             height: 250px;
-            z-index: 8;
+            z-index: 18;
             top: 0;
             left: 0;
             cursor: pointer;
-            display:none;
         }
 
 
@@ -319,8 +318,8 @@
                 <!--frame 4-->
         </div><!-- end banner content -->
 
-        <a class="exit1" href="javascript:window.open(window.clickTag1)"></a>
         <div class="banner-border"></div>
+        <a class="exit" href="javascript:window.open(window.clickTag)"></a>
     </div>
         
 </body>
