@@ -230,16 +230,16 @@
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.2')
               .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
-              .to([frame3StaticSvgLogo, frame3AnimatedSvgs], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2')
-              .to(seeSVG, 1, {opacity: 1, ease: Sine.easeOut},'+=.5')
-              .to(hearSVG, .5, {opacity: 1, ease: Sine.easeOut})
-              .to(hearSVG, .5, {opacity: 0, ease: Sine.easeOut},'+=1')
-              .to(speakSVG, .5, {opacity: 1, ease: Sine.easeOut})
-              .to(speakSVG, .5, {opacity: 0, ease: Sine.easeOut},'+=1')
-              .to(hearSVG, .5, {opacity: 1, ease: Sine.easeOut})
-              .to(hearSVG, .5, {opacity: 0, ease: Sine.easeOut},'+=1')
-              .to(seeSVG, .5, {opacity: 0, ease: Sine.easeOut})
-              .to(frame4Art, 1, {opacity: 1, ease: Sine.easeInOut},'+=3');
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
+              .to(seeSVG, 0, {opacity: 1, ease: Power1.easeOut},'+=.5')
+              .to(hearSVG, .8, {opacity: 1, ease: Circ.easeIn},'-=.1')
+              .to(hearSVG, 0, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(speakSVG, .8, {opacity: 1, ease: Circ.easeIn},'-=.1')
+              .to(speakSVG, 0, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(hearSVG, .8, {opacity: 1, ease: Circ.easeIn},'-=.1')
+              .to(hearSVG, 0, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(seeSVG, .8, {opacity: 0, ease: Circ.easeIn},'-=.1')
+              .to(frame4Art, 1.2, {opacity: 1, ease: Sine.easeInOut},'+=2.3');
 
 
 
