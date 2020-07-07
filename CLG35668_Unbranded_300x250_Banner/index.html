@@ -92,7 +92,8 @@
             background-color: #cf8b82;
         }
 
-        .frame_3_animated_svgs, .frame_3_tear {
+        .frame_3_animated_svgs, .frame_3_tear, 
+        .learn_how_wb, .learn_how_bw {
             position: absolute;
             top: 0;
             left: 0;
@@ -115,7 +116,7 @@
             left: 0;
             width: 300px;
             height: 250px;
-            opacity: 10;
+            opacity: 1;
         }
         .frame_4_art {
             position: absolute;
@@ -180,6 +181,8 @@
             var hearSVG = document.querySelector('#hear_svg');
             var speakSVG = document.querySelector('#speak_svg');
             var frame4Art = document.querySelector('.frame_4_art');
+            var learnHowWB = document.querySelector('.learn_how_wb');
+            var learnHowBW = document.querySelector('.learn_how_bw');
             // elements
             var bannerContent = document.querySelector('.banner-content');
 
@@ -191,7 +194,9 @@
                     './images/see_face_300x250b.jpg',
                     './images/see_spritesheet_300x250b.png',
                     './images/frame_2_copy_300x250b.png',
-                    './images/frame_4_art_300x250b.png'
+                    './images/frame_4_art_300x250b.png',
+                    './images/learn_how_w_b_300x250b.png',
+                    './images/learn_how_b_w_300x250b.png',
                 ];
 
                 for (var i = 0; i < images.length; i++) {
@@ -208,6 +213,8 @@
                     tearSpritesheet.src = images[1];
                     frame2Copy.src = images[2];
                     frame4Art.src = images[3];
+                    learnHowWB.src = images[4];
+                    learnHowBW.src = images[5];
                     init();
                }
             }
@@ -256,7 +263,20 @@
 
               .to(speakSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
               .to(speakSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
-              .to(frame4Art, 1.2, {opacity: 1, ease: Sine.easeInOut},'+=2');
+              .to([frame4Art,learnHowWB],  1, {opacity: 1, ease: Sine.easeInOut},'+=1')
+              .to(learnHowWB,  .3, {opacity: 0, ease: Sine.easeInOut})
+              .to(learnHowBW,  .2, {opacity: 1, ease: Sine.easeInOut},'-=.2')
+              .to(learnHowBW,  .2, {opacity: 0, ease: Sine.easeInOut},'+=.3')
+              .to(learnHowWB,  .2, {opacity:1, ease: Sine.easeInOut},'-=.2')
+              .to(learnHowWB,  .2, {opacity:0, ease: Sine.easeInOut},'+=.3')
+              .to(learnHowBW,  .2, {opacity: 1, ease: Sine.easeInOut},'-=.2')
+              .to(learnHowBW,  .2, {opacity: 0, ease: Sine.easeInOut},'+=.3')
+              .to(learnHowWB,  .2, {opacity:1, ease: Sine.easeInOut},'-=.2')
+              .to(learnHowWB,  .2, {opacity:0, ease: Sine.easeInOut},'+=.3')
+              .to(learnHowBW,  .2, {opacity: 1, ease: Sine.easeInOut},'-=.2')
+              .to(learnHowBW,  .2, {opacity: 0, ease: Sine.easeInOut},'+=.3')
+              .to(learnHowWB,  .2, {opacity:1, ease: Sine.easeInOut},'-=.2')              
+              ;
 
 
 
@@ -361,6 +381,8 @@
                 <!--frame 4-->
                 <div class="frame_4">
                         <img src="" alt="" class="frame_4_art"> 
+                        <img src="" alt="" class="learn_how_bw"> 
+                        <img src="" alt="" class="learn_how_wb"> 
                 </div>
                 <!--frame 4-->
         </div><!-- end banner content -->
