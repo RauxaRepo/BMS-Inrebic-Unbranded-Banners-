@@ -222,11 +222,49 @@
                  loop++; 
                 }
 
+             const tl2 = new TimelineMax({paused:true});
+             tl2
+             .to(tearSVG, .5, {y:20, x:0, ease: Power1.easeInOut})
+             .addLabel('firstDrop')
+             .to(tearSVG, .5, {y:40, x:0, ease: Power1.easeInOut})
+             .addLabel('secondDrop')
+
+
              TweenMax.set(faceBackground, {scale: 1.4,transformOrigin: "50% 75%"});
              TweenMax.set([see_svg, hear_svg, speak_svg], {opacity:0});
              const tl = new TimelineMax();
 
               tl
+              .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
+              .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
+              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
+              .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
+              .to(seeSVG, .5, {opacity: 1, ease: Power1.easeOut},'+=.3')
+              .to(seeSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
+
+              .addCallback(function(){
+                tl2.tweenTo('firstDrop')
+              },'-=.5')
+
+              .to(hearSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
+              .to(hearSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
+
+              .addCallback(function(){
+                tl2.tweenTo('secondDrop')
+              },'-=.3')
+
+              .to(speakSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
+              .to(speakSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(frame4Art, 1.2, {opacity: 1, ease: Sine.easeInOut},'+=2');
+
+
+
+
+
+
+
+             /* tl
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
@@ -244,7 +282,7 @@
 
               .to(speakSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
               .to(speakSVG, .2, {opacity: 0, ease: Power1.easeOut},'+=.5')
-              .to(frame4Art, 1.2, {opacity: 1, ease: Sine.easeInOut},'+=2');
+              .to(frame4Art, 1.2, {opacity: 1, ease: Sine.easeInOut},'+=2');*/
 
 
 
