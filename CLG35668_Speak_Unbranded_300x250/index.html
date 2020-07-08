@@ -259,7 +259,7 @@
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
-              .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
+              .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.5')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
@@ -277,7 +277,7 @@
 
               .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
               .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
-              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1')
+              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1.4')
               .to(exit2,  0, {autoAlpha:1},'-=.5')
               .to(learnHowWB,  .5, {opacity: 0, ease: Power1.easeOut},'+=.5')
               .to(learnHowBW,  .8, {opacity: 1, ease: Power1.easeIn},'-=.8')
