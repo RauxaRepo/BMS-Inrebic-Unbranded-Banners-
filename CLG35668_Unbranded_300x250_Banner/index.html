@@ -6,7 +6,10 @@
     <title></title>
     <meta name="ad.size" content="width=300,height=250">
     <script type="text/javascript">
-        var clickTag = "https://www.google.com/";
+        var clickTag1 = "https://www.google.com/";
+    </script>
+    <script type="text/javascript">
+        var clickTag2 = "https://www.bms.com/.com/";
     </script>
     <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.0.1_min.js"></script>
 
@@ -149,12 +152,22 @@
             left: 0px;
         }
 
-        .exit {
+        .exit_1 {
             position: absolute;
             width: 300px;
             height: 250px;
             z-index: 18;
             top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .exit_2 {
+            position: absolute;
+            width: 150px;
+            height: 44px;
+            z-index: 19;
+            top: 206px;
             left: 0;
             cursor: pointer;
         }
@@ -183,6 +196,7 @@
             var frame4Art = document.querySelector('.frame_4_art');
             var learnHowWB = document.querySelector('.learn_how_wb');
             var learnHowBW = document.querySelector('.learn_how_bw');
+            var exit2 = document.querySelector('.exit_2');
             // elements
             var bannerContent = document.querySelector('.banner-content');
 
@@ -238,7 +252,7 @@
 
 
              TweenMax.set(faceBackground, {scale: 1.4,transformOrigin: "50% 75%"});
-             TweenMax.set([see_svg, hear_svg, speak_svg], {opacity:0});
+             TweenMax.set([see_svg, hear_svg, speak_svg, exit2], {autoAlpha:0});
              const tl = new TimelineMax();
 
               tl
@@ -247,29 +261,39 @@
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
               .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
-              .to(seeSVG, .5, {opacity: 1, ease: Power1.easeOut},'+=.3')
-              .to(seeSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
+              .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 
               .addCallback(function(){
                 tl2.tweenTo('firstDrop')
               },'-=.5')
 
-              .to(hearSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
-              .to(hearSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(hearSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
+              .to(hearSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 
               .addCallback(function(){
                 tl2.tweenTo('secondDrop')
-              },'-=.3')
+              },'-=.4')
 
-              .to(speakSVG, .4, {opacity: 1, ease: Circ.easeIn},'-=.5')
-              .to(speakSVG, .4, {opacity: 0, ease: Power1.easeOut},'+=.5')
-              .to([frame4Art,learnHowWB],  1, {opacity: 1, ease: Power1.easeInOut},'+=.8')
+              .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
+              .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
+              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1')
+              .to(exit2,  0, {autoAlpha:1},'-=.5')
+              .to(learnHowWB,  .5, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(learnHowBW,  .8, {opacity: 1, ease: Power1.easeIn},'-=.8')
+              .to(learnHowBW,  .5, {opacity: 0, ease: Power1.easeOut},'+=1')
+              .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=.8')
+              ;
+
+
+            /* .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
+              .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
+              .to([frame4Art,learnHowWB],  1, {opacity:1, ease: Power1.easeInOut},'+=.8')
+              .to(exit2,  0, {autoAlpha:1},'-=.5')
               .to(learnHowWB,  .5, {opacity: 0, ease: Power1.easeOut},'+=.5')
               .to(learnHowBW,  .8, {opacity: 1, ease: Power1.easeIn},'-=1')
               .to(learnHowBW,  .5, {opacity: 0, ease: Power1.easeOut},'+=1')
-              .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=1')
-              ;
-
+              .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=1') */
 
               setTimeout(function(){
                  console.log('done');
@@ -352,7 +376,8 @@
         </div><!-- end banner content -->
 
         <div class="banner-border"></div>
-        <a class="exit" href="javascript:window.open(window.clickTag)"></a>
+        <a class="exit_1" href="javascript:window.open(window.clickTag1)"></a>
+        <a class="exit_2" href="javascript:window.open(window.clickTag2)"></a>
     </div>
         
 </body>
