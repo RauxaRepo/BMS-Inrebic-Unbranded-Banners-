@@ -133,12 +133,12 @@
 
         .bottom_gradient {
             position: absolute;
-            top: 180px;
+            top: 204px;
             left: 0;
             width: 300px;
-            height:70px;
+            height:46px;
             opacity: 0;
-            background-image: linear-gradient(rgba(172,105,96,0), rgba(172,105,96,1));
+            background-image: linear-gradient(rgba(168, 112, 104, 0), rgba(168, 112, 104,1));
         }
 
         .banner-border {
@@ -193,6 +193,7 @@
             var seeSVG = document.querySelector('#see_svg');
             var hearSVG = document.querySelector('#hear_svg');
             var speakSVG = document.querySelector('#speak_svg');
+            var bottomGradient = document.querySelector('.bottom_gradient');
             var frame4Art = document.querySelector('.frame_4_art');
             var learnHowWB = document.querySelector('.learn_how_wb');
             var learnHowBW = document.querySelector('.learn_how_bw');
@@ -260,7 +261,7 @@
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
               .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
-              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 
