@@ -53,7 +53,7 @@
             height: 250px;
             overflow:hidden;
             opacity: 1;
-            background-color: #cf8b82;
+            background-color: #8582ab;
         }
 
         .face_background{
@@ -72,17 +72,9 @@
             left: 0;
             width: 300px;
             height: 250px;
-            background:url('./images/hear_spritesheet_300x250b.png') no-repeat;
+            background:url('./images/speak_spritesheet_300x250b.png') no-repeat;
             background-position:0px 0px;
             opacity: 0;
-        }
-        .frame_2_copy{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300px;
-            height: 250px;
-            opacity: 0; 
         }
 
         .frame_3_static_svg_logo {
@@ -92,10 +84,10 @@
             width: 300px;
             height: 250px;
             opacity: 0;
-            background-color: #6f8db3;
+            background-color: #8582ab;
         }
 
-        .frame_3_animated_svgs, .frame_3_tear, 
+        .frame_2_copy, .frame_3_animated_svgs, .frame_3_tear, 
         .learn_how_wb, .learn_how_bw {
             position: absolute;
             top: 0;
@@ -105,7 +97,7 @@
             opacity: 0;
         }
 
-        .svg_wrapper {
+        .svg_wrapper, .frame_4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -113,14 +105,7 @@
             height: 250px;
             opacity: 1;
         }
-        .frame_4 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300px;
-            height: 250px;
-            opacity: 1;
-        }
+
         .frame_4_art {
             position: absolute;
             top: 0;
@@ -133,12 +118,12 @@
 
         .bottom_gradient {
             position: absolute;
-            top: 180px;
+            top: 204px;
             left: 0;
             width: 300px;
-            height:70px;
+            height:46px;
             opacity: 0;
-            background-image: linear-gradient(rgba(79,101,128,0), rgba(111,141,179,1));
+            background-image: linear-gradient(rgba(109,106,141,0), rgba(109,106,141,1));
         }
 
         .banner-border {
@@ -206,9 +191,9 @@
 
             function preload() {
                 images = [
-                    './images/hear_face_300x250b.jpg',
-                    './images/hear_spritesheet_300x250b.png',
-                    './images/hear_frame2_copy_300x250b.png',
+                    './images/speak_face_300x250b.jpg',
+                    './images/speak_spritesheet_300x250b.png',
+                    './images/speak_frame2_copy_300x250b.png',
                     './images/frame_4_art_300x250b.png',
                     './images/learn_how_w_b_300x250b.png',
                     './images/learn_how_b_w_300x250b.png',
@@ -260,8 +245,8 @@
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
-              .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
-              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.5')
+              .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 
@@ -278,7 +263,7 @@
 
               .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
               .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
-              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1.4')
+              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1')
               .to(exit2,  0, {autoAlpha:1},'-=.5')
               .to(learnHowWB,  .5, {opacity: 0, ease: Power1.easeOut},'+=.5')
               .to(learnHowBW,  .8, {opacity: 1, ease: Power1.easeIn},'-=.8')
@@ -339,7 +324,6 @@
                         <div class="svg_wrapper">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><g id="rest_of_MS_logo_svg" data-name="Rest_of_logo_minus_see_hear_speak"><path d="M207.7,75.09a2.6,2.6,0,0,1,2.58,2.62v66.13a2.62,2.62,0,0,1-2.58,2.64H195.85a2.61,2.61,0,0,1-2.58-2.64V113.73a2.6,2.6,0,0,0-2.27-2.61,2.57,2.57,0,0,0-2.81,2l-7.58,31.37a2.55,2.55,0,0,1-2.5,2H166.74a2.56,2.56,0,0,1-2.5-2l-6.36-26.42-1.18-4.89a2.57,2.57,0,0,0-2.72-1.69,2.65,2.65,0,0,0-2.26,1.45,24.31,24.31,0,0,0-.19,4.42c.05,1.45.14,2.87.09,4.25v22.25a2.62,2.62,0,0,1-2.58,2.64H137.18a2.62,2.62,0,0,1-2.58-2.64V77.71a2.6,2.6,0,0,1,2.58-2.62H160a2.55,2.55,0,0,1,2.5,2L170,108.14a2.57,2.57,0,0,0,5,0l7.49-31.06a2.54,2.54,0,0,1,2.5-2H207.7" style="fill:#fff"/><path d="M262.46,74.75H216.19a2.62,2.62,0,0,0-2.58,2.64s0,1.83,0,5c0,8.86.09,25.55.09,25.55l-.13,33.33v2.29a2.61,2.61,0,0,0,2.58,2.63h15.72a2.61,2.61,0,0,0,2.57-2.63V119.67a2.61,2.61,0,0,1,2.57-2.64h21a2.61,2.61,0,0,0,2.58-2.63v-9.19a2.6,2.6,0,0,0-2.58-2.63h-21a2.61,2.61,0,0,1-2.57-2.64v-7.2a2.6,2.6,0,0,1,2.57-2.63h25.41A2.61,2.61,0,0,0,265,87.48V77.39a2.62,2.62,0,0,0-2.57-2.64" style="fill:#fff"/><path d="M50.62,171.46v-7.05a.61.61,0,0,0-1.18-.21l-2.78,7.47a.59.59,0,0,1-.56.4H44.46a.59.59,0,0,1-.56-.4l-2.78-7.47a.6.6,0,0,0-1.17.21v7.05a.61.61,0,0,1-.61.61H35a.61.61,0,0,1-.61-.61V154.33a.6.6,0,0,1,.61-.6h6.64a.61.61,0,0,1,.57.39l2.5,6.85a.61.61,0,0,0,1.14,0l2.5-6.85a.61.61,0,0,1,.57-.39h6.65a.6.6,0,0,1,.6.6v17.13a.6.6,0,0,1-.6.61H51.22a.6.6,0,0,1-.6-.61" style="fill:#fff"/><path d="M64.73,171.46V165a.63.63,0,0,0-.1-.32l-6.2-10a.6.6,0,0,1,.51-.92h4.8a.61.61,0,0,1,.53.31l2.7,4.9a.6.6,0,0,0,1.06,0l2.66-4.9a.6.6,0,0,1,.53-.31H76a.6.6,0,0,1,.51.92l-6.16,10a.62.62,0,0,0-.09.32v6.51a.61.61,0,0,1-.61.61H65.33a.6.6,0,0,1-.6-.61" style="fill:#fff"/><path d="M95.86,171.46V154.33a.6.6,0,0,1,.6-.6h4.35a.6.6,0,0,1,.6.6v12.29a.61.61,0,0,0,.61.61h5.74a.6.6,0,0,1,.61.6v3.63a.61.61,0,0,1-.61.61H96.46a.6.6,0,0,1-.6-.61" style="fill:#fff"/><path d="M119.78,153.42c-5.66,0-10,3.85-10,9.49s4.37,9.49,10,9.49,10-3.85,10-9.49S125.45,153.42,119.78,153.42Zm0,14.08a4.59,4.59,0,1,1,4.4-4.59A4.34,4.34,0,0,1,119.78,167.5Z" style="fill:#fff"/><path d="M132.49,171.46V154.33a.6.6,0,0,1,.61-.6h12.7a.61.61,0,0,1,.61.6V158a.62.62,0,0,1-.61.61h-7.15a.6.6,0,0,0-.6.6v.6a.6.6,0,0,0,.6.61h7a.6.6,0,0,1,.6.61v3.62a.6.6,0,0,1-.6.61h-7a.6.6,0,0,0-.6.61v5.63a.61.61,0,0,1-.61.61H133.1a.61.61,0,0,1-.61-.61" style="fill:#fff"/><path d="M149.46,171.46V154.33a.6.6,0,0,1,.61-.6h4.34a.61.61,0,0,1,.61.6v17.13a.61.61,0,0,1-.61.61h-4.34a.61.61,0,0,1-.61-.61" style="fill:#fff"/><path d="M173.46,163.08a.59.59,0,0,1,0-1,4.21,4.21,0,0,0,1.84-3.67c0-2.14-1.65-4.67-5.45-4.67H159.28a.61.61,0,0,0-.61.6v17.13a.61.61,0,0,0,.61.61H170.2c3.68,0,5.41-2.42,5.41-5A4.52,4.52,0,0,0,173.46,163.08ZM164.23,159a.6.6,0,0,1,.6-.6h3.69a1.05,1.05,0,0,1,1.1,1,1.08,1.08,0,0,1-1.1,1.1h-3.69a.6.6,0,0,1-.6-.61Zm4.45,8.5h-3.85a.6.6,0,0,1-.6-.61v-1.12a.6.6,0,0,1,.6-.61h3.85a1.19,1.19,0,0,1,1.3,1.18A1.16,1.16,0,0,1,168.68,167.45Z" style="fill:#fff"/><path d="M92.09,153.68H79.32a.6.6,0,0,0-.61.6v17.23a.61.61,0,0,0,.61.61H92.09a.61.61,0,0,0,.61-.61v-3.65a.61.61,0,0,0-.61-.61H84.9a.61.61,0,0,1-.61-.61v-.8a.61.61,0,0,1,.61-.61h7a.6.6,0,0,0,.6-.6V161a.6.6,0,0,0-.6-.6h-7a.61.61,0,0,1-.61-.61v-.61a.61.61,0,0,1,.61-.61h7.19a.6.6,0,0,0,.61-.6v-3.66a.6.6,0,0,0-.61-.6" style="fill:#fff"/><path d="M235.4,171.46V154.33a.6.6,0,0,1,.6-.6h4.35a.6.6,0,0,1,.6.6v17.13a.6.6,0,0,1-.6.61H236a.6.6,0,0,1-.6-.61" style="fill:#fff"/><path d="M222.58,158.9c0-.47.3-.83,1.41-.83a9.39,9.39,0,0,1,4.94,1.49.61.61,0,0,0,.83-.13l2.27-3a.62.62,0,0,0-.12-.86,12.4,12.4,0,0,0-7.34-2.2c-5.06,0-7.66,3-7.66,6.11,0,7.27,10.29,5.48,10.29,7.24,0,.72-1,1-2,1a8.56,8.56,0,0,1-5.46-1.95.6.6,0,0,0-.87.13l-2.2,3.14a.6.6,0,0,0,.1.81,12.4,12.4,0,0,0,8.15,2.57c4.95,0,8-2.35,8-6.41,0-6.86-10.26-5.37-10.26-7.11" style="fill:#fff"/><path d="M249.34,158.9c0-.47.3-.83,1.41-.83a9.39,9.39,0,0,1,4.94,1.49.61.61,0,0,0,.83-.13l2.27-3a.62.62,0,0,0-.12-.86,12.4,12.4,0,0,0-7.34-2.2c-5.06,0-7.66,3-7.66,6.11,0,7.27,10.29,5.48,10.29,7.24,0,.72-1,1-2.05,1a8.61,8.61,0,0,1-5.47-1.95.59.59,0,0,0-.86.13l-2.2,3.14a.6.6,0,0,0,.1.81,12.4,12.4,0,0,0,8.15,2.57c4.95,0,8-2.35,8-6.41,0-6.86-10.25-5.37-10.25-7.11" style="fill:#fff"/><path d="M191.93,166.11a.58.58,0,0,1,.21-.78A6,6,0,0,0,195,160c0-3.46-2.33-6.33-6.64-6.33h-9.23a.6.6,0,0,0-.61.6v17.23a.61.61,0,0,0,.61.61h4.37a.62.62,0,0,0,.61-.61v-4.59a.6.6,0,0,1,.6-.61h1a.59.59,0,0,1,.55.36l2.23,5.08a.6.6,0,0,0,.55.37h5a.61.61,0,0,0,.54-.89Zm-4.44-4.66h-2.8a.61.61,0,0,1-.6-.61v-1.69a.6.6,0,0,1,.6-.61h2.8c.94,0,1.82.45,1.82,1.44S188.43,161.45,187.49,161.45Z" style="fill:#fff"/><path d="M205.92,153.42c-5.67,0-10,3.85-10,9.49s4.37,9.49,10,9.49,10-3.85,10-9.49S211.58,153.42,205.92,153.42Zm0,14.08a4.59,4.59,0,1,1,4.4-4.59A4.34,4.34,0,0,1,205.92,167.5Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="300" height="250" style="fill:none"/></g></svg>
                         </div>
-                        <div class="bottom_gradient"></div>
                 </div>
                 <div class="frame_3_animated_svgs">
                         <div class="svg_wrapper">
@@ -362,9 +346,10 @@
                 </div>
                 <div class="frame_3_tear">
                      <div class="svg_wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><g id="tear_svg" data-name="tear original copy"><path d="M210.35,76.65c-.06,2.27-1.71,4.33-4.25,7l-.72.8q-3.24,3.61-3.24,7.24A9.31,9.31,0,0,0,205,98.51a9.43,9.43,0,0,0,5.39,2.74,9.92,9.92,0,0,0,3,0,11.41,11.41,0,0,0,5.45-2.75,9.31,9.31,0,0,0,2.89-6.86q0-3.63-3.24-7.24l-.72-.8c-2.36-2.23-4.1-4.54-4.15-7Z" style="fill:#6f8db3"/><path d="M213.33,89.2a4.21,4.21,0,0,0-.16.55,2.78,2.78,0,0,0,0,1.15,2.29,2.29,0,0,0,1.45,1.74c1.2.48,2.93,0,3.57-2.24.54-1.88-.4-4.74-2.29-7.12C217.31,86.72,214.15,87,213.33,89.2Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="300" height="250" style="fill:none"/></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><g id="tear_svg" data-name="tear original copy"><path d="M210.35,76.65c-.06,2.27-1.71,4.33-4.25,7l-.72.8q-3.24,3.61-3.24,7.24A9.31,9.31,0,0,0,205,98.51a9.43,9.43,0,0,0,5.39,2.74,9.92,9.92,0,0,0,3,0,11.41,11.41,0,0,0,5.45-2.75,9.31,9.31,0,0,0,2.89-6.86q0-3.63-3.24-7.24l-.72-.8c-2.36-2.23-4.1-4.54-4.15-7Z" style="fill:#8582ab"/><path d="M213.33,89.2a4.21,4.21,0,0,0-.16.55,2.78,2.78,0,0,0,0,1.15,2.29,2.29,0,0,0,1.45,1.74c1.2.48,2.93,0,3.57-2.24.54-1.88-.4-4.74-2.29-7.12C217.31,86.72,214.15,87,213.33,89.2Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="300" height="250" style="fill:none"/></g></svg>
                      </div>
                 </div>
+                <div class="bottom_gradient"></div>
                 <!--frame 3-->
 
                 <!--frame 4-->
