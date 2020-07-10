@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="ad.size" content="width=320,height=480">
+    <script type="text/javascript">
+        var clickTag1 = "https://www.google.com/";
+    </script>
+    <script type="text/javascript">
+        var clickTag2 = "https://www.bms.com/.com/";
+    </script>
+    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_2.0.1_min.js"></script>
+
+    <style type="text/css">
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        * { 
+            padding: 0;
+        }
+        .container {
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            display: none;
+        }
+        .banner-content.banner-content--active {
+            opacity: 1;
+            display: block;
+        }
+
+        .b-320x480 {
+            width: 320px;
+            height: 480px;
+            padding: 0;
+        }
+
+       .frame_1_frame_2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            overflow:hidden;
+            opacity: 1;
+            background-color: #6f8db3;
+        }
+
+        .face_background{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            border:0;
+            opacity: .5;
+        }
+
+        .tear_spritesheet {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            background:url('./images/hear_spritesheet_320x480b.png') no-repeat;
+            background-position:0px 0px;
+            opacity: 0;
+        }
+        .frame_2_copy{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 0; 
+        }
+
+        .frame_3_static_svg_logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 0;
+            background-color: #6f8db3;
+        }
+
+        .frame_3_animated_svgs, .frame_3_tear, 
+        .learn_how_wb, .learn_how_bw {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 0;
+        }
+
+        .svg_wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 1;
+        }
+        .frame_4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 1;
+        }
+        .frame_4_art {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 480px;
+            opacity: 0;
+            background-color:#ffffff;
+        }
+
+        .bottom_gradient {
+            position: absolute;
+            top: 400px;
+            left: 0;
+            width: 320px;
+            height:80px;
+            opacity: 0;
+            background-image: linear-gradient(rgba(80,102,130,0), rgba(80,102,130,1));
+        }
+
+        .banner-border {
+            position: absolute;
+            width: 318px;
+            height: 478px;
+            border: 1px solid #222;
+            pointer-events: none;
+            z-index: 15;
+            top: 0px;
+            left: 0px;
+        }
+
+        .exit_1 {
+            position: absolute;
+            width: 320px;
+            height: 480px;
+            z-index: 18;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .exit_2 {
+            position: absolute;
+            width: 320px;
+            height: 70px;
+            z-index: 19;
+            top: 410px;
+            left: 0;
+            cursor: pointer;
+        }
+
+
+    </style>
+    <script type="text/javascript" charset="utf-8">
+
+        document.addEventListener("DOMContentLoaded", function(e) {
+
+
+            // variables
+            var loadedImage = 0;
+            var images = [];
+
+            var faceBackground = document.querySelector('.face_background');
+            var tearSpritesheet = document.querySelector('.tear_spritesheet');
+            var frame2Copy = document.querySelector('.frame_2_copy');
+            var frame3StaticSvgLogo = document.querySelector('.frame_3_static_svg_logo');
+            var frame3AnimatedSvgs = document.querySelector('.frame_3_animated_svgs');
+            var frame3Tear = document.querySelector('.frame_3_tear');
+            var tearSVG = document.querySelector('#tear_svg');
+            var seeSVG = document.querySelector('#see_svg');
+            var hearSVG = document.querySelector('#hear_svg');
+            var speakSVG = document.querySelector('#speak_svg');
+            var bottomGradient = document.querySelector('.bottom_gradient');
+            var frame4Art = document.querySelector('.frame_4_art');
+            var learnHowWB = document.querySelector('.learn_how_wb');
+            var learnHowBW = document.querySelector('.learn_how_bw');
+            var exit2 = document.querySelector('.exit_2');
+            // elements
+            var bannerContent = document.querySelector('.banner-content');
+
+
+
+
+            function preload() {
+                images = [
+                    './images/hear_face_320x480b.jpg',
+                    './images/hear_spritesheet_320x480b.png',
+                    './images/hear_frame2_copy_320x480b.png',
+                    './images/hear_frame4_art_320x480b.png',
+                    './images/learn_how_w_b_320x480b.png',
+                    './images/learn_how_b_w_320x480b.png',
+                ];
+
+                for (var i = 0; i < images.length; i++) {
+                    var imageObj = new Image();
+                    imageObj.src = images[i];
+                    imageObj.addEventListener("load", iLoad, false);
+                }
+               // console.log('Entering preload');
+            }
+            function iLoad() {
+                loadedImage++;
+                if (images.length == loadedImage) {
+                    faceBackground.src = images[0];
+                    tearSpritesheet.src = images[1];
+                    frame2Copy.src = images[2];
+                    frame4Art.src = images[3];
+                    learnHowWB.src = images[4];
+                    learnHowBW.src = images[5];
+                    init();
+               }
+            }
+
+            function init() {
+                console.log('init');
+                bannerContent.classList.add('banner-content--active');
+
+                var loop = 0;
+
+              function checkLoop() {
+                 loop++; 
+                }
+
+             const tl2 = new TimelineMax({paused:true});
+             tl2
+             .to(tearSVG, .5, {y:20, x:0, ease: Power1.easeInOut})
+             .addLabel('firstDrop')
+             .to(tearSVG, .6, {y:40, x:0, ease: Power1.easeInOut})
+             .addLabel('secondDrop')
+
+
+             TweenMax.set(faceBackground, {scale: 1.4,transformOrigin: "50% 90%"});
+             TweenMax.set([see_svg, hear_svg, speak_svg, exit2], {autoAlpha:0});
+             const tl = new TimelineMax();
+
+              tl
+              .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
+              .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
+              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
+              .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -2880px", ease:SteppedEase.config(6)})
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=1.9')
+              .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
+              .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
+
+              .addCallback(function(){
+                tl2.tweenTo('firstDrop')
+              },'-=.5')
+
+              .to(hearSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
+              .to(hearSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
+
+              .addCallback(function(){
+                tl2.tweenTo('secondDrop')
+              },'-=.4')
+
+              .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
+              .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
+              .to([frame4Art,learnHowWB], 1, {opacity:1, ease: Power1.easeInOut},'+=1')
+              .to(exit2,  0, {autoAlpha:1},'-=.5')
+              .to(learnHowWB,  .5, {opacity: 0, ease: Power1.easeOut},'+=.5')
+              .to(learnHowBW,  .8, {opacity: 1, ease: Power1.easeIn},'-=.8')
+              .to(learnHowBW,  .5, {opacity: 0, ease: Power1.easeOut},'+=1')
+              .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=.8')
+              ;
+
+
+
+              setTimeout(function(){
+                 console.log('done');
+                },15000)
+            }
+
+              window.onload = function(e) {
+              preload();
+            }
+
+        });
+    </script>
+    </head>
+<body>
+    <div id="container" class="container b-320x480" style="background-color: #fff;">
+        <div class="banner-content">
+            <div class="frame_1_frame_2">
+                <img src="" alt="" class="face_background" />
+                <div class="tear_spritesheet"></div>
+                <img src="" alt="" class="frame_2_copy" />
+            </div>
+
+                <!--frame 3-->
+            <div class="frame_3_static_svg_logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+                    <g id="mf_logo"><path d="M226.65,169.48a3,3,0,0,1,2.94,3V248a3,3,0,0,1-2.94,3H213.11a3,3,0,0,1-3-3v-34.4a2.94,2.94,0,0,0-5.81-.72l-8.65,35.84a2.92,2.92,0,0,1-2.85,2.29h-13a2.93,2.93,0,0,1-2.86-2.29l-7.26-30.18L168.38,213a2.92,2.92,0,0,0-3.11-1.93,3,3,0,0,0-2.57,1.66,26.7,26.7,0,0,0-.22,5c.06,1.66.16,3.29.1,4.86V248a3,3,0,0,1-3,3H146.08a3,3,0,0,1-3-3V172.48a3,3,0,0,1,3-3h26.1a2.91,2.91,0,0,1,2.85,2.28l8.54,35.48a2.93,2.93,0,0,0,5.72,0l8.56-35.48a2.91,2.91,0,0,1,2.85-2.28h26" style="fill:#fff"/><path d="M289.21,169.1H236.35a3,3,0,0,0-2.95,3s0,2.1,0,5.67c0,10.12.12,29.2.12,29.2l-.16,38.08v2.61a3,3,0,0,0,2.95,3h18a3,3,0,0,0,2.94-3V220.41a3,3,0,0,1,2.94-3h24a3,3,0,0,0,2.95-3V203.89a3,3,0,0,0-2.95-3h-24a3,3,0,0,1-2.94-3v-8.23a3,3,0,0,1,2.94-3h29a3,3,0,0,0,2.94-3V172.1a3,3,0,0,0-2.94-3" style="fill:#fff"/><path d="M47.18,279.59v-8.06a.69.69,0,0,0-1.34-.24l-3.18,8.54a.68.68,0,0,1-.64.45H40.15a.69.69,0,0,1-.65-.45l-3.17-8.54a.69.69,0,0,0-1.34.24v8.06a.69.69,0,0,1-.69.69h-5a.69.69,0,0,1-.69-.69V260a.69.69,0,0,1,.69-.7h7.59a.7.7,0,0,1,.65.46l2.86,7.82a.69.69,0,0,0,1.3,0l2.86-7.82a.7.7,0,0,1,.65-.46h7.59a.7.7,0,0,1,.7.7v19.57a.69.69,0,0,1-.7.69h-5a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M63.3,279.59v-7.44a.66.66,0,0,0-.11-.36L56.1,260.38a.7.7,0,0,1,.59-1.06h5.48a.69.69,0,0,1,.6.36l3.09,5.6a.7.7,0,0,0,1.22,0l3-5.59a.68.68,0,0,1,.61-.37H76.2a.7.7,0,0,1,.59,1.06l-7,11.41a.65.65,0,0,0-.1.36v7.44a.69.69,0,0,1-.7.69H64a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M98.87,279.59V260a.69.69,0,0,1,.69-.7h5a.7.7,0,0,1,.7.7v14a.69.69,0,0,0,.69.69h6.56a.69.69,0,0,1,.69.69v4.15a.69.69,0,0,1-.69.69H99.56a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M126.2,259c-6.47,0-11.46,4.4-11.46,10.84s5,10.84,11.46,10.84,11.47-4.4,11.47-10.84S132.68,259,126.2,259Zm0,16.09a5.25,5.25,0,1,1,5-5.25A5,5,0,0,1,126.2,275.07Z" style="fill:#fff"/><path d="M140.72,279.59V260a.69.69,0,0,1,.69-.7h14.52a.69.69,0,0,1,.69.7v4.14a.69.69,0,0,1-.69.69h-8.17a.69.69,0,0,0-.69.7v.69a.69.69,0,0,0,.69.69h8a.69.69,0,0,1,.69.69v4.14a.69.69,0,0,1-.69.7h-8a.69.69,0,0,0-.69.69v6.44a.69.69,0,0,1-.69.69h-5a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M160.11,279.59V260a.69.69,0,0,1,.69-.7h5a.69.69,0,0,1,.69.7v19.57a.69.69,0,0,1-.69.69h-5a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M187.53,270a.68.68,0,0,1,0-1.15,4.79,4.79,0,0,0,2.09-4.19c0-2.46-1.88-5.35-6.22-5.35h-12a.69.69,0,0,0-.69.7v19.57a.69.69,0,0,0,.69.69H183.8c4.21,0,6.19-2.76,6.19-5.69A5.19,5.19,0,0,0,187.53,270ZM177,265.29a.69.69,0,0,1,.7-.69h4.21a1.21,1.21,0,0,1,1.25,1.2,1.24,1.24,0,0,1-1.25,1.25h-4.21a.69.69,0,0,1-.7-.69Zm5.09,9.71h-4.39a.69.69,0,0,1-.7-.69V273a.69.69,0,0,1,.7-.69h4.39a1.36,1.36,0,0,1,1.48,1.35A1.32,1.32,0,0,1,182.07,275Z" style="fill:#fff"/><path d="M94.56,259.27H80a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69H94.56a.69.69,0,0,0,.7-.69v-4.17a.69.69,0,0,0-.7-.69H86.35a.69.69,0,0,1-.69-.7v-.92a.69.69,0,0,1,.69-.69h8a.69.69,0,0,0,.7-.69v-4.17a.7.7,0,0,0-.7-.7h-8a.69.69,0,0,1-.69-.69v-.7a.69.69,0,0,1,.69-.69h8.21a.7.7,0,0,0,.7-.7V260a.69.69,0,0,0-.7-.69" style="fill:#fff"/><path d="M258.3,279.59V260a.69.69,0,0,1,.69-.7h5a.69.69,0,0,1,.69.7v19.57a.69.69,0,0,1-.69.69h-5a.69.69,0,0,1-.69-.69" style="fill:#fff"/><path d="M243.65,265.24c0-.54.35-.95,1.61-.95a10.72,10.72,0,0,1,5.64,1.7.69.69,0,0,0,.95-.15l2.59-3.43a.69.69,0,0,0-.13-1,14.07,14.07,0,0,0-8.39-2.52c-5.78,0-8.74,3.41-8.74,7,0,8.31,11.74,6.25,11.74,8.28,0,.82-1.13,1.13-2.33,1.13a9.84,9.84,0,0,1-6.25-2.23.69.69,0,0,0-1,.15l-2.51,3.59a.7.7,0,0,0,.12.93,14.14,14.14,0,0,0,9.31,2.93c5.65,0,9.1-2.68,9.1-7.32,0-7.84-11.72-6.13-11.72-8.12" style="fill:#fff"/><path d="M274.22,265.24c0-.54.35-.95,1.61-.95a10.75,10.75,0,0,1,5.65,1.7.69.69,0,0,0,.95-.15l2.59-3.43a.69.69,0,0,0-.14-1,14.06,14.06,0,0,0-8.38-2.52c-5.78,0-8.75,3.41-8.75,7,0,8.31,11.75,6.25,11.75,8.28,0,.82-1.14,1.13-2.34,1.13a9.79,9.79,0,0,1-6.24-2.23.69.69,0,0,0-1,.15l-2.51,3.59a.7.7,0,0,0,.11.93,14.16,14.16,0,0,0,9.31,2.93c5.66,0,9.1-2.68,9.1-7.32,0-7.84-11.72-6.13-11.72-8.12" style="fill:#fff"/><path d="M208.63,273.48a.68.68,0,0,1,.24-.9,6.79,6.79,0,0,0,3.24-6.08c0-3.95-2.65-7.23-7.58-7.23H194a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69h5a.69.69,0,0,0,.69-.69V274.4a.69.69,0,0,1,.69-.7h1.16a.7.7,0,0,1,.64.42l2.54,5.8a.69.69,0,0,0,.63.41H211a.69.69,0,0,0,.62-1Zm-5.08-5.34h-3.19a.69.69,0,0,1-.69-.69v-1.93a.69.69,0,0,1,.69-.69h3.19c1.08,0,2.09.5,2.09,1.64S204.63,268.14,203.55,268.14Z" style="fill:#fff"/><path d="M224.61,259c-6.47,0-11.46,4.4-11.46,10.84s5,10.84,11.46,10.84,11.47-4.4,11.47-10.84S231.09,259,224.61,259Zm0,16.09a5.25,5.25,0,1,1,5-5.25A5,5,0,0,1,224.61,275.07Z" style="fill:#fff"/><path d="M61.42,229.33H50.87a.69.69,0,0,0-.69.69V249.7a.69.69,0,0,0,.69.69h5a.69.69,0,0,0,.7-.69v-5.25a.69.69,0,0,1,.69-.69h4.17c4.93,0,7.58-3.29,7.58-7.2S66.35,229.33,61.42,229.33Zm-.82,8.87H57.25a.69.69,0,0,1-.69-.69v-1.93a.69.69,0,0,1,.69-.69H60.6c1.07,0,1.93.53,1.93,1.67S61.67,238.2,60.6,238.2Z" style="fill:#b04344"/><path d="M126.77,239.55a.69.69,0,0,1,0-.85l6.7-8.24a.69.69,0,0,0-.54-1.13h-6a.7.7,0,0,0-.57.29l-4.06,5.8a.69.69,0,0,1-1.26-.4v-5a.69.69,0,0,0-.69-.69h-5a.69.69,0,0,0-.7.69V249.7a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69v-4.92a.71.71,0,0,1,.14-.42l.43-.58a.69.69,0,0,1,1.14,0l4,6.25a.7.7,0,0,0,.59.32h6a.69.69,0,0,0,.55-1.1l-7.17-9.74" style="fill:#b04344"/><path d="M112.43,249.46l-7.26-19.68a.69.69,0,0,0-.65-.45h-7a.69.69,0,0,0-.65.45l-7.26,19.68a.69.69,0,0,0,.65.93h5.73a.7.7,0,0,0,.66-.49l.46-1.48a.68.68,0,0,1,.66-.49h6.55a.7.7,0,0,1,.67.49l.45,1.48a.7.7,0,0,0,.67.49h5.72A.69.69,0,0,0,112.43,249.46Zm-10.29-7.09H99.85a.69.69,0,0,1-.66-.9l1.14-3.73a.69.69,0,0,1,1.33,0l1.14,3.73A.69.69,0,0,1,102.14,242.37Z" style="fill:#b04344"/><path d="M87.16,229.36H72.57a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69H87.16a.69.69,0,0,0,.7-.69v-4.17a.7.7,0,0,0-.7-.7H79a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69H79a.69.69,0,0,1-.69-.69v-.7a.69.69,0,0,1,.69-.69h8.21a.7.7,0,0,0,.7-.7v-4.17a.69.69,0,0,0-.7-.69" style="fill:#b04344"/><path d="M35.59,235.33c0-.54.34-1,1.61-1a10.74,10.74,0,0,1,5.64,1.7.7.7,0,0,0,.95-.15l2.59-3.43a.69.69,0,0,0-.13-1A14.12,14.12,0,0,0,37.86,229c-5.78,0-8.75,3.41-8.75,7,0,8.31,11.75,6.25,11.75,8.27,0,.83-1.14,1.14-2.34,1.14a9.82,9.82,0,0,1-6.24-2.23.69.69,0,0,0-1,.15l-2.51,3.59a.67.67,0,0,0,.12.92,14.07,14.07,0,0,0,9.31,2.94c5.65,0,9.09-2.68,9.09-7.33,0-7.83-11.71-6.12-11.71-8.11" style="fill:#b04344"/><path d="M53.53,219.88v-6.67a.69.69,0,0,1,.69-.69h6.16a.69.69,0,0,1,.69.69v6.67a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69V200.2a.69.69,0,0,0-.69-.69h-5a.69.69,0,0,0-.7.69v6.07a.69.69,0,0,1-.69.69H54.22a.69.69,0,0,1-.69-.69V200.2a.7.7,0,0,0-.7-.69h-5a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69h5a.7.7,0,0,0,.7-.69" style="fill:#b04344"/><path d="M112.21,219.64,105,200a.69.69,0,0,0-.65-.45h-7a.69.69,0,0,0-.65.45l-7.26,19.68a.69.69,0,0,0,.65.93h5.73a.7.7,0,0,0,.66-.49l.45-1.48a.7.7,0,0,1,.67-.49h6.55a.68.68,0,0,1,.66.49l.46,1.48a.7.7,0,0,0,.66.49h5.73A.69.69,0,0,0,112.21,219.64Zm-10.29-7.09H99.63a.69.69,0,0,1-.66-.9l1.14-3.73a.69.69,0,0,1,1.33,0l1.14,3.73A.69.69,0,0,1,101.92,212.55Z" style="fill:#b04344"/><path d="M129.82,213.71a.68.68,0,0,1,.24-.89,6.82,6.82,0,0,0,3.25-6.08c0-4-2.66-7.24-7.58-7.24H115.18a.7.7,0,0,0-.7.7v19.68a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69v-5.25a.69.69,0,0,1,.7-.69h1.15a.69.69,0,0,1,.64.41l2.54,5.81a.69.69,0,0,0,.64.41h5.67a.69.69,0,0,0,.62-1Zm-5.07-5.33h-3.19a.69.69,0,0,1-.7-.69v-1.93a.7.7,0,0,1,.7-.7h3.19c1.07,0,2.08.51,2.08,1.65S125.82,208.38,124.75,208.38Z" style="fill:#b04344"/><path d="M86.94,220.52a.69.69,0,0,0,.7-.69v-4.17a.7.7,0,0,0-.7-.7H78.73a.7.7,0,0,1-.7-.69v-.92a.7.7,0,0,1,.7-.69h8a.69.69,0,0,0,.69-.7v-4.17a.69.69,0,0,0-.69-.69h-8a.7.7,0,0,1-.7-.7v-.69a.7.7,0,0,1,.7-.7h8.21a.69.69,0,0,0,.7-.69v-4.17a.69.69,0,0,0-.7-.69H72.35a.7.7,0,0,0-.7.69v19.68a.7.7,0,0,0,.7.69H86.94" style="fill:#b04344"/><path d="M85.49,191.13c5.65,0,9.09-2.69,9.09-7.33,0-7.83-11.71-6.13-11.71-8.11,0-.54.34-.95,1.61-.95a10.65,10.65,0,0,1,5.64,1.7.7.7,0,0,0,.95-.15l2.59-3.43a.7.7,0,0,0-.13-1,14.16,14.16,0,0,0-8.39-2.51c-5.78,0-8.75,3.41-8.75,7,0,8.3,11.75,6.25,11.75,8.27,0,.82-1.14,1.14-2.34,1.14a9.82,9.82,0,0,1-6.24-2.23.68.68,0,0,0-1,.15l-2.51,3.58a.68.68,0,0,0,.12.93,14.07,14.07,0,0,0,9.31,2.94" style="fill:#b04344"/><path d="M112.75,169.68H98.15a.7.7,0,0,0-.69.7v19.68a.69.69,0,0,0,.69.69h14.6a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69h-8.22a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.7.7,0,0,0,.7-.7V178a.69.69,0,0,0-.7-.69h-8a.69.69,0,0,1-.69-.7v-.69a.69.69,0,0,1,.69-.7h8.22a.69.69,0,0,0,.69-.69v-4.17a.7.7,0,0,0-.69-.7" style="fill:#b04344"/><path d="M117.77,190.75h14.59a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69h-8.22a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.69.69,0,0,0,.69-.7V178a.69.69,0,0,0-.69-.69h-8a.69.69,0,0,1-.69-.7v-.69a.69.69,0,0,1,.69-.7h8.22a.69.69,0,0,0,.69-.69v-4.17a.7.7,0,0,0-.69-.7H117.77a.7.7,0,0,0-.7.7v19.68a.69.69,0,0,0,.7.69" style="fill:#b04344"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                </svg>
+            </div>
+            <div class="bottom_gradient"></div>
+            <div class="frame_3_animated_svgs">
+                <div class="svg_wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+                        <g id="see_svg"><path d="M85.49,191.13c5.65,0,9.09-2.69,9.09-7.33,0-7.83-11.71-6.13-11.71-8.11,0-.54.34-.95,1.61-.95a10.65,10.65,0,0,1,5.64,1.7.7.7,0,0,0,.95-.15l2.59-3.43a.7.7,0,0,0-.13-1,14.16,14.16,0,0,0-8.39-2.51c-5.78,0-8.75,3.41-8.75,7,0,8.3,11.75,6.25,11.75,8.27,0,.82-1.14,1.14-2.34,1.14a9.82,9.82,0,0,1-6.24-2.23.68.68,0,0,0-1,.15l-2.51,3.58a.68.68,0,0,0,.12.93,14.07,14.07,0,0,0,9.31,2.94" style="fill:#fff"/><path d="M112.75,169.68H98.15a.7.7,0,0,0-.69.7v19.68a.69.69,0,0,0,.69.69h14.6a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69h-8.22a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.7.7,0,0,0,.7-.7V178a.69.69,0,0,0-.7-.69h-8a.69.69,0,0,1-.69-.7v-.69a.69.69,0,0,1,.69-.7h8.22a.69.69,0,0,0,.69-.69v-4.17a.7.7,0,0,0-.69-.7" style="fill:#fff"/><path d="M117.77,190.75h14.59a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69h-8.22a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.69.69,0,0,0,.69-.7V178a.69.69,0,0,0-.69-.69h-8a.69.69,0,0,1-.69-.7v-.69a.69.69,0,0,1,.69-.7h8.22a.69.69,0,0,0,.69-.69v-4.17a.7.7,0,0,0-.69-.7H117.77a.7.7,0,0,0-.7.7v19.68a.69.69,0,0,0,.7.69" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                    </svg>
+                </div>
+
+                <div class="svg_wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+                        <g id="hear_svg"><path d="M53.53,219.88v-6.67a.69.69,0,0,1,.69-.69h6.16a.69.69,0,0,1,.69.69v6.67a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69V200.2a.69.69,0,0,0-.69-.69h-5a.69.69,0,0,0-.7.69v6.07a.69.69,0,0,1-.69.69H54.22a.69.69,0,0,1-.69-.69V200.2a.7.7,0,0,0-.7-.69h-5a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69h5a.7.7,0,0,0,.7-.69" style="fill:#fff"/><path d="M112.21,219.64,105,200a.69.69,0,0,0-.65-.45h-7a.69.69,0,0,0-.65.45l-7.26,19.68a.69.69,0,0,0,.65.93h5.73a.7.7,0,0,0,.66-.49l.45-1.48a.7.7,0,0,1,.67-.49h6.55a.68.68,0,0,1,.66.49l.46,1.48a.7.7,0,0,0,.66.49h5.73A.69.69,0,0,0,112.21,219.64Zm-10.29-7.09H99.63a.69.69,0,0,1-.66-.9l1.14-3.73a.69.69,0,0,1,1.33,0l1.14,3.73A.69.69,0,0,1,101.92,212.55Z" style="fill:#fff"/><path d="M129.82,213.71a.68.68,0,0,1,.24-.89,6.82,6.82,0,0,0,3.25-6.08c0-4-2.66-7.24-7.58-7.24H115.18a.7.7,0,0,0-.7.7v19.68a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69v-5.25a.69.69,0,0,1,.7-.69h1.15a.69.69,0,0,1,.64.41l2.54,5.81a.69.69,0,0,0,.64.41h5.67a.69.69,0,0,0,.62-1Zm-5.07-5.33h-3.19a.69.69,0,0,1-.7-.69v-1.93a.7.7,0,0,1,.7-.7h3.19c1.07,0,2.08.51,2.08,1.65S125.82,208.38,124.75,208.38Z" style="fill:#fff"/><path d="M86.94,220.52a.69.69,0,0,0,.7-.69v-4.17a.7.7,0,0,0-.7-.7H78.73a.7.7,0,0,1-.7-.69v-.92a.7.7,0,0,1,.7-.69h8a.69.69,0,0,0,.69-.7v-4.17a.69.69,0,0,0-.69-.69h-8a.7.7,0,0,1-.7-.7v-.69a.7.7,0,0,1,.7-.7h8.21a.69.69,0,0,0,.7-.69v-4.17a.69.69,0,0,0-.7-.69H72.35a.7.7,0,0,0-.7.69v19.68a.7.7,0,0,0,.7.69H86.94" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                    </svg>
+                </div>
+
+                <div class="svg_wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+                        <g id="speak_svg"><path d="M61.42,229.33H50.87a.69.69,0,0,0-.69.69V249.7a.69.69,0,0,0,.69.69h5a.69.69,0,0,0,.7-.69v-5.25a.69.69,0,0,1,.69-.69h4.17c4.93,0,7.58-3.29,7.58-7.2S66.35,229.33,61.42,229.33Zm-.82,8.87H57.25a.69.69,0,0,1-.69-.69v-1.93a.69.69,0,0,1,.69-.69H60.6c1.07,0,1.93.53,1.93,1.67S61.67,238.2,60.6,238.2Z" style="fill:#fff"/><path d="M126.77,239.55a.69.69,0,0,1,0-.85l6.7-8.24a.69.69,0,0,0-.54-1.13h-6a.7.7,0,0,0-.57.29l-4.06,5.8a.69.69,0,0,1-1.26-.4v-5a.69.69,0,0,0-.69-.69h-5a.69.69,0,0,0-.7.69V249.7a.69.69,0,0,0,.7.69h5a.69.69,0,0,0,.69-.69v-4.92a.71.71,0,0,1,.14-.42l.43-.58a.69.69,0,0,1,1.14,0l4,6.25a.7.7,0,0,0,.59.32h6a.69.69,0,0,0,.55-1.1l-7.17-9.74" style="fill:#fff"/><path d="M112.43,249.46l-7.26-19.68a.69.69,0,0,0-.65-.45h-7a.69.69,0,0,0-.65.45l-7.26,19.68a.69.69,0,0,0,.65.93h5.73a.7.7,0,0,0,.66-.49l.46-1.48a.68.68,0,0,1,.66-.49h6.55a.7.7,0,0,1,.67.49l.45,1.48a.7.7,0,0,0,.67.49h5.72A.69.69,0,0,0,112.43,249.46Zm-10.29-7.09H99.85a.69.69,0,0,1-.66-.9l1.14-3.73a.69.69,0,0,1,1.33,0l1.14,3.73A.69.69,0,0,1,102.14,242.37Z" style="fill:#fff"/><path d="M87.16,229.36H72.57a.69.69,0,0,0-.69.69v19.68a.69.69,0,0,0,.69.69H87.16a.69.69,0,0,0,.7-.69v-4.17a.7.7,0,0,0-.7-.7H79a.69.69,0,0,1-.69-.69v-.92a.69.69,0,0,1,.69-.69h8a.69.69,0,0,0,.69-.69v-4.18a.69.69,0,0,0-.69-.69H79a.69.69,0,0,1-.69-.69v-.7a.69.69,0,0,1,.69-.69h8.21a.7.7,0,0,0,.7-.7v-4.17a.69.69,0,0,0-.7-.69" style="fill:#fff"/><path d="M35.59,235.33c0-.54.34-1,1.61-1a10.74,10.74,0,0,1,5.64,1.7.7.7,0,0,0,.95-.15l2.59-3.43a.69.69,0,0,0-.13-1A14.12,14.12,0,0,0,37.86,229c-5.78,0-8.75,3.41-8.75,7,0,8.31,11.75,6.25,11.75,8.27,0,.83-1.14,1.14-2.34,1.14a9.82,9.82,0,0,1-6.24-2.23.69.69,0,0,0-1,.15l-2.51,3.59a.67.67,0,0,0,.12.92,14.07,14.07,0,0,0,9.31,2.94c5.65,0,9.09-2.68,9.09-7.33,0-7.83-11.71-6.12-11.71-8.11" style="fill:#fff"/></g>
+                        <g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                    </svg>
+                </div>
+            </div>
+            <div class="frame_3_tear">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+                    <g id="tear_svg" data-name="tear drop"><path d="M229.67,171.26c-.06,2.59-1.95,5-4.85,8l-.82.91q-3.7,4.13-3.71,8.27a10.67,10.67,0,0,0,3.31,7.84,10.82,10.82,0,0,0,6.15,3.13,11.33,11.33,0,0,0,3.45,0,12.93,12.93,0,0,0,6.22-3.14,10.67,10.67,0,0,0,3.31-7.84q0-4.14-3.71-8.27l-.82-.91c-2.7-2.55-4.69-5.19-4.74-8Z" style="fill:#6f8db3"/><path d="M233.08,185.61a3.73,3.73,0,0,0-.18.63,3.4,3.4,0,0,0,0,1.31,2.66,2.66,0,0,0,1.67,2c1.37.54,3.34.05,4.08-2.56.61-2.16-.46-5.42-2.62-8.14C237.63,182.77,234,183.08,233.08,185.61Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                </svg>
+            </div>
+            <!--frame 3-->
+
+            <!--frame 4-->
+            <div class="frame_4">
+                    <img src="" alt="" class="frame_4_art"> 
+                    <img src="" alt="" class="learn_how_bw"> 
+                    <img src="" alt="" class="learn_how_wb"> 
+            </div>
+            <!--frame 4-->
+        </div><!-- end banner content -->
+
+        <div class="banner-border"></div>
+        <a class="exit_1" href="javascript:window.open(window.clickTag1)"></a>
+        <a class="exit_2" href="javascript:window.open(window.clickTag2)"></a>
+    </div>
+        
+</body>
+</html>
