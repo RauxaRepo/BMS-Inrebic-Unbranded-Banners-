@@ -53,7 +53,7 @@
             height: 480px;
             overflow:hidden;
             opacity: 1;
-            background-color: #cf8b82;
+            background-color: #8582ab;
         }
 
         .face_background{
@@ -72,7 +72,7 @@
             left: 0;
             width: 320px;
             height: 480px;
-            background:url('./images/see_spritesheet_320x480b.png') no-repeat;
+            background:url('./images/speak_spritesheet_320x480b.png') no-repeat;
             background-position:0px 0px;
             opacity: 0;
         }
@@ -92,7 +92,7 @@
             width: 320px;
             height: 480px;
             opacity: 0;
-            background-color: #cf8b82;
+            background-color: #8582ab;
         }
 
         .frame_3_animated_svgs, .frame_3_tear, 
@@ -138,7 +138,7 @@
             width: 320px;
             height:80px;
             opacity: 0;
-            background-image: linear-gradient(rgba(168, 112, 104, 0), rgba(168, 112, 104,1));
+            background-image: linear-gradient(rgba(80,102,130,0), rgba(80,102,130,1));
         }
 
         .banner-border {
@@ -206,10 +206,10 @@
 
             function preload() {
                 images = [
-                    './images/see_face_320x480b.jpg',
-                    './images/see_spritesheet_320x480b.png',
-                    './images/see_frame2_copy_320x480b.png',
-                    './images/see_frame4_art_320x480b.png',
+                    './images/speak_face_320x480b.jpg',
+                    './images/speak_spritesheet_320x480b.png',
+                    './images/speak_frame2_copy_320x480b.png',
+                    './images/speak_frame4_art_320x480b.png',
                     './images/learn_how_w_b_320x480b.png',
                     './images/learn_how_b_w_320x480b.png',
                 ];
@@ -252,7 +252,7 @@
              .addLabel('secondDrop')
 
 
-             TweenMax.set(faceBackground, {scale: 1.4,transformOrigin: "50% 85%"});
+             TweenMax.set(faceBackground, {scale: 1.4,transformOrigin: "50% 90%"});
              TweenMax.set([see_svg, hear_svg, speak_svg, exit2], {autoAlpha:0});
              const tl = new TimelineMax();
 
@@ -260,8 +260,8 @@
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
-              .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -2880px", ease:SteppedEase.config(6)})
-              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
+              .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -2880px", ease:SteppedEase.config(6)})
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 
@@ -338,7 +338,7 @@
             </div>
             <div class="frame_3_tear">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
-                    <g id="tear_svg" data-name="tear drop"><path d="M229.67,171.26c-.06,2.59-1.95,5-4.85,8l-.82.91q-3.7,4.13-3.71,8.27a10.67,10.67,0,0,0,3.31,7.84,10.82,10.82,0,0,0,6.15,3.13,11.33,11.33,0,0,0,3.45,0,12.93,12.93,0,0,0,6.22-3.14,10.67,10.67,0,0,0,3.31-7.84q0-4.14-3.71-8.27l-.82-.91c-2.7-2.55-4.69-5.19-4.74-8Z" style="fill:#cf8b82"/><path d="M233.08,185.61a3.73,3.73,0,0,0-.18.63,3.4,3.4,0,0,0,0,1.31,2.66,2.66,0,0,0,1.67,2c1.37.54,3.34.05,4.08-2.56.61-2.16-.46-5.42-2.62-8.14C237.63,182.77,234,183.08,233.08,185.61Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
+                    <g id="tear_svg" data-name="tear drop"><path d="M229.67,171.26c-.06,2.59-1.95,5-4.85,8l-.82.91q-3.7,4.13-3.71,8.27a10.67,10.67,0,0,0,3.31,7.84,10.82,10.82,0,0,0,6.15,3.13,11.33,11.33,0,0,0,3.45,0,12.93,12.93,0,0,0,6.22-3.14,10.67,10.67,0,0,0,3.31-7.84q0-4.14-3.71-8.27l-.82-.91c-2.7-2.55-4.69-5.19-4.74-8Z" style="fill:#8582ab"/><path d="M233.08,185.61a3.73,3.73,0,0,0-.18.63,3.4,3.4,0,0,0,0,1.31,2.66,2.66,0,0,0,1.67,2c1.37.54,3.34.05,4.08-2.56.61-2.16-.46-5.42-2.62-8.14C237.63,182.77,234,183.08,233.08,185.61Z" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="320" height="480" style="fill:none"/></g>
                 </svg>
             </div>
             <!--frame 3-->
