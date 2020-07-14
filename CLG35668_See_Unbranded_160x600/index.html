@@ -6,7 +6,7 @@
     <title></title>
     <meta name="ad.size" content="width=160,height=600">
     <script type="text/javascript">
-        var clickTag1 = "https://www.google.com/";
+        var clickTag1 = "https://www.doubleclickbygoogle.com/";
     </script>
     <script type="text/javascript">
         var clickTag2 = "https://www.bms.com/.com/";
@@ -45,7 +45,7 @@
             padding: 0;
         }
 
-       .frame_1_frame_2 {
+        .frame_1_frame_2 {
             position: absolute;
             top: 0;
             left: 0;
@@ -53,19 +53,17 @@
             height: 600px;
             overflow:hidden;
             opacity: 1;
-            background:url('./images/see_bkgrnd_face_160x600b.jpg') no-repeat;
+            background-color: #cf8b82;
         }
 
-        .face_big {
+        .face_background{
             position: absolute;
             top: 0;
-            left: 0;
-            width:160px;
+            left: -80px;
+            width: 320px;
             height: 600px;
             border:0;
-            opacity: 1;
-            background:url('./images/see_face_160x600b.jpg') no-repeat;
-            background-position:0 -300px;
+            opacity: .5;
         }
 
         .tear_spritesheet {
@@ -100,7 +98,7 @@
             opacity: 0;
         }
 
-        .svg_wrapper, .frame_4  {
+        .svg_wrapper, .frame_4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -171,8 +169,7 @@
             var loadedImage = 0;
             var images = [];
 
-            var faceBig = document.querySelector('.face_big');
-            var frame1frame2 = document.querySelector('.frame_1_frame_2');
+            var faceBackground = document.querySelector('.face_background');
             var tearSpritesheet = document.querySelector('.tear_spritesheet');
             var frame2Copy = document.querySelector('.frame_2_copy');
             var frame3StaticSvgLogo = document.querySelector('.frame_3_static_svg_logo');
@@ -191,8 +188,6 @@
             var bannerContent = document.querySelector('.banner-content');
 
 
-
-
             function preload() {
                 images = [
                     './images/see_face_160x600b.jpg',
@@ -201,7 +196,6 @@
                     './images/see_frame4_art_160x600b.png',
                     './images/learn_how_w_b_160x600b.png',
                     './images/learn_how_b_w_160x600b.png',
-                    './images/see_bkgrnd_face_160x600b.jpg',
                 ];
 
                 for (var i = 0; i < images.length; i++) {
@@ -209,18 +203,16 @@
                     imageObj.src = images[i];
                     imageObj.addEventListener("load", iLoad, false);
                 }
-               // console.log('Entering preload');
             }
             function iLoad() {
                 loadedImage++;
                 if (images.length == loadedImage) {
-                    faceBig.src = images[0];
+                    faceBackground.src = images[0];
                     tearSpritesheet.src = images[1];
                     frame2Copy.src = images[2];
                     frame4Art.src = images[3];
                     learnHowWB.src = images[4];
                     learnHowBW.src = images[5];
-                    frame1frame2.scr = images [6];
                     init();
                }
             }
@@ -242,13 +234,14 @@
              .to(tearSVG, .4, {y:23, x:0, ease: Power1.easeInOut})
              .addLabel('secondDrop')
 
+             TweenMax.set(faceBackground, {scale: 1.6,transformOrigin: "16% 100%"});
              TweenMax.set([see_svg, hear_svg, speak_svg, exit2], {autoAlpha:0});
              const tl = new TimelineMax();
 
               tl
-              .to(faceBig, 0, {opacity: 1, backgroundSize:"+=320px +=900px", backgroundPosition:"0 -300px"})
-              .to(faceBig, .8, {opacity: 0, backgroundSize:"-=160px -=450px", backgroundPosition:"0 100px", ease: Power1.easeOut}, '+=1.5')
-              .to(frame2Copy, 1.3, {opacity: 1, ease: Sine.easeInOut}, '-=.3')
+              .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
+              .to(faceBackground, .8, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=1')
+              .to(frame2Copy, 1, {opacity: 1, ease: Power1.easeInOut}, '-=.1')
               .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -3600px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
@@ -292,12 +285,11 @@
     <div id="container" class="container b-160x600" style="background-color: #fff;">
         <div class="banner-content">
             <div class="frame_1_frame_2">
-                    <div class="face_big"></div>
-                    <div class="tear_spritesheet"></div>
-                    <img src="" alt="" class="frame_2_copy" />
-             </div>
+                <img src="" alt="" class="face_background" />
+                <div class="tear_spritesheet"></div>
+                <img src="" alt="" class="frame_2_copy" />
+            </div>
             
-
                 <!--frame 3-->
             <div class="frame_3_static_svg_logo">
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 600">
