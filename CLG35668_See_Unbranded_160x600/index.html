@@ -54,17 +54,18 @@
             overflow:hidden;
             opacity: 1;
             background:url('./images/see_bkgrnd_face_160x600b.jpg') no-repeat;
-            background-color: #cf8b82;
         }
 
-        .face_background{
+        .face_big {
             position: absolute;
             top: 0;
-            left: 120;
-            width: 240px;
+            left: 0;
+            width:160px;
             height: 600px;
             border:0;
-            opacity: .5;
+            opacity: 1;
+            background:url('./images/see_face_160x600b.jpg') no-repeat;
+            background-position:0 -300px;
         }
 
         .tear_spritesheet {
@@ -170,7 +171,8 @@
             var loadedImage = 0;
             var images = [];
 
-            var faceBackground = document.querySelector('.face_background');
+            var faceBig = document.querySelector('.face_big');
+            var frame1frame2 = document.querySelector('.frame_1_frame_2');
             var tearSpritesheet = document.querySelector('.tear_spritesheet');
             var frame2Copy = document.querySelector('.frame_2_copy');
             var frame3StaticSvgLogo = document.querySelector('.frame_3_static_svg_logo');
@@ -199,6 +201,7 @@
                     './images/see_frame4_art_160x600b.png',
                     './images/learn_how_w_b_160x600b.png',
                     './images/learn_how_b_w_160x600b.png',
+                    './images/see_bkgrnd_face_160x600b.jpg',
                 ];
 
                 for (var i = 0; i < images.length; i++) {
@@ -211,12 +214,13 @@
             function iLoad() {
                 loadedImage++;
                 if (images.length == loadedImage) {
-                    faceBackground.src = images[0];
+                    faceBig.src = images[0];
                     tearSpritesheet.src = images[1];
                     frame2Copy.src = images[2];
                     frame4Art.src = images[3];
                     learnHowWB.src = images[4];
                     learnHowBW.src = images[5];
+                    frame1frame2.scr = images [6];
                     init();
                }
             }
@@ -235,18 +239,15 @@
              tl2
              .to(tearSVG, .4, {y:12, x:0, ease: Power1.easeInOut})
              .addLabel('firstDrop')
-             .to(tearSVG, .4, {y:22, x:0, ease: Power1.easeInOut})
+             .to(tearSVG, .4, {y:23, x:0, ease: Power1.easeInOut})
              .addLabel('secondDrop')
 
-
-             TweenMax.set(faceBackground, {scale: 1.6,transformOrigin: "12% 100%"});
              TweenMax.set([see_svg, hear_svg, speak_svg, exit2], {autoAlpha:0});
              const tl = new TimelineMax();
 
               tl
-              .to(faceBackground, .5, {opacity: 0, ease: Sine.easeInOut})
-              .to(faceBackground, 1, {scale: 0, opacity: 1, transformOrigin: "100% 50%", ease: Sine.easeInOut}, '+=.5')
-              .to(faceBackground, .5, {scale: 0, opacity: 0, transformOrigin: "100% 50%", ease: Sine.easeInOut})
+              .to(faceBig, 0, {opacity: 1, backgroundSize:"+=320px +=900px", backgroundPosition:"0 -300px"})
+              .to(faceBig, 3, {opacity: 0, backgroundSize:"-=160px -=450px", backgroundPosition:"-100px 150px", ease: Sine.easeInOut}, '+=2')
               .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
               .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -3600px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
@@ -292,10 +293,11 @@
     <div id="container" class="container b-160x600" style="background-color: #fff;">
         <div class="banner-content">
             <div class="frame_1_frame_2">
-                <img src="" alt="" class="face_background" />
-                <div class="tear_spritesheet"></div>
-                <img src="" alt="" class="frame_2_copy" />
-            </div>
+                    <div class="face_big"></div>
+                    <div class="tear_spritesheet"></div>
+                    <img src="" alt="" class="frame_2_copy" />
+             </div>
+            
 
                 <!--frame 3-->
             <div class="frame_3_static_svg_logo">
