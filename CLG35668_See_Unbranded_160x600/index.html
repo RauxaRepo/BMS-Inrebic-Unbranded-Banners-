@@ -247,9 +247,9 @@
 
               tl
               .to(faceBig, 0, {opacity: 1, backgroundSize:"+=320px +=900px", backgroundPosition:"0 -300px"})
-              .to(faceBig, 1.2, {opacity: 0, backgroundSize:"-=160px -=450px", backgroundPosition:"0 100px", ease: Sine.easeInOut}, '+=1.7')
-              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.2')
-              .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -3600px", ease:SteppedEase.config(6)})
+              .to(faceBig, .8, {opacity: 0, backgroundSize:"-=160px -=450px", backgroundPosition:"0 100px", ease: Power1.easeOut}, '+=1.5')
+              .to(frame2Copy, 1.3, {opacity: 1, ease: Sine.easeInOut}, '-=.3')
+              .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -3600px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
@@ -274,7 +274,6 @@
               .to(learnHowBW,  .5, {opacity: 0, ease: Power1.easeOut},'+=1')
               .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=.8')
               ;
-
 
 
               setTimeout(function(){
