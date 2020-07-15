@@ -259,7 +259,7 @@
               tl
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, .8, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
-              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
+              .to(frame2Copy, 1, {opacity: 1, ease: Power1.easeOut}, '-=.5')
               .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')

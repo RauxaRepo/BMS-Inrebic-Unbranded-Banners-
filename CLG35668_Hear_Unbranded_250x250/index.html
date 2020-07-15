@@ -76,14 +76,6 @@
             opacity: 0;
             border:0;
         }
-        .frame_2_copy{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 250px;
-            opacity: 0; 
-        }
 
         .frame_3_static_svg_logo {
             position: absolute;
@@ -95,7 +87,7 @@
             background-color: #6f8db3;
         }
 
-        .frame_3_animated_svgs, .frame_3_tear, 
+        .frame_3_animated_svgs, .frame_3_tear, .frame_2_copy,
         .learn_how_wb, .learn_how_bw {
             position: absolute;
             top: 0;
@@ -105,7 +97,7 @@
             opacity: 0;
         }
 
-        .svg_wrapper {
+        .svg_wrapper, .frame_4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -113,14 +105,7 @@
             height: 250px;
             opacity: 1;
         }
-        .frame_4 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 250px;
-            opacity: 1;
-        }
+
         .frame_4_art {
             position: absolute;
             top: 0;
@@ -259,9 +244,9 @@
               tl
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, .8, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
-              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
+              .to(frame2Copy, 1, {opacity: 1, ease: Power1.easeOut}, '-=.6')
               .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -1500px", ease:SteppedEase.config(6)})
-              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
+              .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.1')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
               .to(seeSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
 

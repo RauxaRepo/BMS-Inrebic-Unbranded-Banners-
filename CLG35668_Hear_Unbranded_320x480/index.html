@@ -76,14 +76,6 @@
             background-position:0px 0px;
             opacity: 0;
         }
-        .frame_2_copy{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 320px;
-            height: 480px;
-            opacity: 0; 
-        }
 
         .frame_3_static_svg_logo {
             position: absolute;
@@ -95,7 +87,7 @@
             background-color: #6f8db3;
         }
 
-        .frame_3_animated_svgs, .frame_3_tear, 
+        .frame_2_copy, .frame_3_animated_svgs, .frame_3_tear, 
         .learn_how_wb, .learn_how_bw {
             position: absolute;
             top: 0;
@@ -105,7 +97,7 @@
             opacity: 0;
         }
 
-        .svg_wrapper {
+        .svg_wrapper, .frame_4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -113,14 +105,7 @@
             height: 480px;
             opacity: 1;
         }
-        .frame_4 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 320px;
-            height: 480px;
-            opacity: 1;
-        }
+
         .frame_4_art {
             position: absolute;
             top: 0;
@@ -178,8 +163,6 @@
 
         document.addEventListener("DOMContentLoaded", function(e) {
 
-
-            // variables
             var loadedImage = 0;
             var images = [];
 
@@ -203,7 +186,6 @@
 
 
 
-
             function preload() {
                 images = [
                     './images/hear_face_320x480b.jpg',
@@ -219,7 +201,7 @@
                     imageObj.src = images[i];
                     imageObj.addEventListener("load", iLoad, false);
                 }
-               // console.log('Entering preload');
+
             }
             function iLoad() {
                 loadedImage++;
@@ -259,7 +241,7 @@
               tl
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
-              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.7')
+              .to(frame2Copy, 1, {opacity: 1, ease: Power1.easeOut}, '-=.7')
               .to(tearSpritesheet, .5, {opacity:1, backgroundPosition:"0 -2880px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=1.9')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
@@ -285,7 +267,6 @@
               .to(learnHowBW,  .5, {opacity: 0, ease: Power1.easeOut},'+=1')
               .to(learnHowWB, .8, {opacity:1, ease: Power1.easeIn},'-=.8')
               ;
-
 
 
               setTimeout(function(){

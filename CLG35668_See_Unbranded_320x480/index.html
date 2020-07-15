@@ -76,7 +76,7 @@
             background-position:0px 0px;
             opacity: 0;
         }
-        .frame_2_copy{
+        .frame_2_copy {
             position: absolute;
             top: 0;
             left: 0;
@@ -105,7 +105,7 @@
             opacity: 0;
         }
 
-        .svg_wrapper {
+        .svg_wrapper, .frame_4 {
             position: absolute;
             top: 0;
             left: 0;
@@ -113,14 +113,7 @@
             height: 480px;
             opacity: 1;
         }
-        .frame_4 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 320px;
-            height: 480px;
-            opacity: 1;
-        }
+
         .frame_4_art {
             position: absolute;
             top: 0;
@@ -259,7 +252,7 @@
               tl
               .to(faceBackground, .5, {opacity: 1, ease: Sine.easeInOut})
               .to(faceBackground, 1, {scale: 1, opacity: 1, ease: Sine.easeInOut}, '+=.5')
-              .to(frame2Copy, 1, {opacity: 1, ease: Sine.easeInOut}, '-=.6')
+              .to(frame2Copy, 1, {opacity: 1, ease: Power1.easeOut}, '-=.5')
               .to(tearSpritesheet, .6, {opacity:1, backgroundPosition:"0 -2880px", ease:SteppedEase.config(6)})
               .to([frame3StaticSvgLogo, frame3AnimatedSvgs, frame3Tear, bottomGradient], 1, {opacity: 1, ease: Sine.easeInOut}, '+=2.3')
               .to(seeSVG, .5, {autoAlpha: 1, ease: Power1.easeOut},'+=.3')
@@ -274,7 +267,7 @@
 
               .addCallback(function(){
                 tl2.tweenTo('secondDrop')
-              },'-=.4')
+              },'-=.5')
 
               .to(speakSVG, .4, {autoAlpha: 1, ease: Circ.easeIn},'-=.5')
               .to(speakSVG, .4, {autoAlpha: 0, ease: Power1.easeOut},'+=.5')
