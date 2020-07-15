@@ -127,6 +127,19 @@
             background-image: linear-gradient(rgba(168, 112, 104, 0), rgba(168, 112, 104,1));
         }
 
+        /* Covers dot that shows up in Safari */
+        .white_cover {
+            position: absolute;
+            top: 250px;
+            left: 118px;
+            width: 5px;
+            height: 5px;
+            opacity: 1;
+            background-color:#ffffff;
+            border-radius: 1px;
+        }
+        /* Covers dot that shows up in Safari */
+
         .banner-border {
             position: absolute;
             width: 158px;
@@ -163,7 +176,6 @@
     <script type="text/javascript" charset="utf-8">
 
         document.addEventListener("DOMContentLoaded", function(e) {
-
 
             // variables
             var loadedImage = 0;
@@ -298,6 +310,7 @@
             </div>
             <div class="bottom_gradient"></div>
             <div class="frame_3_animated_svgs">
+                <div class="white_cover"></div>
                 <div class="svg_wrapper">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 600">
                         <g id="see_svg"><path d="M42.25,260.62c2.88,0,4.64-1.37,4.64-3.74,0-4-6-3.12-6-4.14,0-.27.18-.48.82-.48a5.45,5.45,0,0,1,2.88.87.37.37,0,0,0,.49-.08l1.32-1.75a.36.36,0,0,0-.07-.5,7.22,7.22,0,0,0-4.28-1.28c-3,0-4.46,1.74-4.46,3.56,0,4.24,6,3.19,6,4.22,0,.42-.58.58-1.19.58a5,5,0,0,1-3.18-1.14.36.36,0,0,0-.51.08l-1.28,1.83a.35.35,0,0,0,.06.47,7.21,7.21,0,0,0,4.75,1.5" style="fill:#fff"/><path d="M56.15,249.68H48.71a.36.36,0,0,0-.36.36v10a.36.36,0,0,0,.36.36h7.44a.35.35,0,0,0,.35-.36v-2.13a.35.35,0,0,0-.35-.35H52a.35.35,0,0,1-.35-.35v-.47a.35.35,0,0,1,.35-.35H56a.36.36,0,0,0,.35-.36v-2.13a.35.35,0,0,0-.35-.35H52a.35.35,0,0,1-.35-.35v-.36a.35.35,0,0,1,.35-.35h4.19a.35.35,0,0,0,.35-.36V250a.35.35,0,0,0-.35-.36" style="fill:#fff"/><path d="M58.71,260.43h7.44a.36.36,0,0,0,.36-.36v-2.13a.36.36,0,0,0-.36-.35H62a.35.35,0,0,1-.35-.35v-.47a.35.35,0,0,1,.35-.35H66a.35.35,0,0,0,.35-.36v-2.13a.35.35,0,0,0-.35-.35H62a.35.35,0,0,1-.35-.35v-.36a.35.35,0,0,1,.35-.35h4.19a.36.36,0,0,0,.36-.36V250a.36.36,0,0,0-.36-.36H58.71a.36.36,0,0,0-.35.36v10a.36.36,0,0,0,.35.36" style="fill:#fff"/></g><g id="Bounding_Box" data-name="Bounding Box"><rect width="160" height="600" style="fill:none"/></g>
